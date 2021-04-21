@@ -1,87 +1,21 @@
 # JupyterNotebooksDEGENaCPharm
+Jupyter notebooks create figures for amplitude data (change in current and ratio) and selectivity data (realtive permeability) from TEVC data. There are two folders: 1) containing the figures for the [Fechner et al. 2021, JGP paper](https://rupress.org/jgp/article/153/4/e202012655/211847/DEG-ENaC-ASIC-channels-vary-in-their-sensitivity) and 2) figures to analyze data from N-terminal mutation study project. FOr the Dose response figures, data were analyzed with IgorPro, Individual dose-response curve fitted with the HIll equation and the fitted values for IC50 and EC50 entered into excel data shets. 
 
-Selectivity Study:
+## Make Figures from TEVC data
 
-DAY 0: harvest:
--	harvest oocytes
--	prepare injection mix and keep at -80C
-o	my data are in folder /Users/Fechner/Box Sync/Fechner/TEVC-GoodmanlabBOX/Project-STFX/InjectionMixesSTFX
-o	examples excel sheets in github Folder
-o	adjust comments to prepare for how many recordings and which conditions to do
+### Clone matlab code to your computer
+- [Link to wormsense Guthub repo](https://github.com/wormsenseLab/AnalysisFunction.git)
 
-DAY 1: inject oocytes
--	inject oocytes and keep at 18C in L-15 + 300 uM Amilroide
+### Analyze data with TEVC Matlab code
+- Follow the description to analyze [TEVC](https://github.com/wormsenseLab/AnalysisFunction) amplitude with TEVCAnalyzeLoopSTFX.m and selectivity with TEVCSelectivitySTFX.m 
 
-DAY 4 to 7: recordings
--	for selectivity measurements I always use the following sequencs
--	monitor the cell with ContRamp1550 until it’s stable
--	use pgf 10ContStep, which is a combination of 10x ContRamp1550 and 3x STEPSens
--	monitor the cell with ContRamp1550, switch solutions and monitor until it’s stable in new solutions
--	use pgf 10ContStep 
--	and the end: use ContRamp1550, switch back to NaGluSel solution, switch to 300 uM amiloride, and wash with NaGluSel solution
-
-The last use of the protocol ContRamp1550 (or sometimes used at the beginning) with the switch to amiloride is used to measure the amplitude of the current at -85 mV and to determine the quality of the recording.  
-
-Analysis of Selectivity Data:
-
-Enter Meta Data
-
--	Amplitude analysis amiloride sensitive current: Enter ContRamp1550 of amiloride block data into excel spreadsheet (only works 1 file per cell). They are located in the Box Folder: /Users/Fechner/Box Sync/Fechner/TEVC-GoodmanlabBOX/Project-STFX/MetaDataSTFX/MetaDelta and are called TEVCMetaSTFX111.xlsx – replace STFX111 with the current frog number.
--	Enter series for replicate of 3 in TEVCMetaSTFX112-Selectivity.xlsx (replace STFX112 with current frog number) Meta data sheet found here: /Users/Fechner/Box Sync/Fechner/TEVC-GoodmanlabBOX/Project-STFX/MetaDataSTFX
-
-
-RUN MATLAB Code:
-
--	Clone matlab code to your computer
-o	https://github.com/wormsenseLab/AnalysisFunction.git
--	Prerequisite: follow the instruction of sigtool installation for the import .dat files (see Sammy’s script as well)
--	Describe here: HOT TO INSTALL SIGTOOL
--	Open Matlab
--	Type SigTOOL in command window, click continue, if a window appears (mostly grey), just close it.
--	Before starting the analysis, navigate to the folder where you want to save the Ratio-analysis files. In my case: /Users/Fechner/Box Sync/Fechner/TEVC-GoodmanlabBOX/Project-STFX/RatioSTFX
-
--	Run TEVCAnalyzeLoopSTFX.m for analysis of amplitude
-o	First section (%%  load dat.files), which is a script from Sammy (I copied those files in a folder locally and not using the one from Github, but Github would be fine).
-	Navigate to the folder where the dat files are stored, in my case: /Users/Fechner/Box Sync/Fechner/TEVC-GoodmanlabBOX/Project-STFX/datFilesSTFX
-	Loads a file ephysData (explore data, contains)
-o	Second section (Load Meta Data TEVC)
-	Load Meta Data for amiloride sensitive amplitude measurements
-	/Users/Fechner/Box Sync/Fechner/TEVC-GoodmanlabBOX/Project-STFX/MetaDataSTFX/MetaDelta
-	E.g. the file: TEVCMetaSTFX112.xlsx
-o	Third section (Analysis Individual Recording)
-	Enter “2” behind the variable a1 (2 is the first recording)
-	In the first round, enter 2 as well behind the variable a2
-	After running the code ones, you can use the variable LastFile behind a2, but it doesn’t exist in the first round yet 
-	i gives the column row corresponding to the MetaData + the name o fthe recording
-	if there is an error, the following error message appears
-•	there were an error; This file will be skipped for analysis.
-•	Debugging: type "name" in the command window below to figure our the file name.
-•	typical error: 1) check if the file exist in the data structure ephysData on the right in Workspace.
-•	2) Verify that the name in MetaData Sheet is correct.
-•	Check if you entered the correct series
-	You can create a plot for each recording by changing the variable makePlots from 0 to 1
-	The code creates a “single” (!) file called RatioDeltaTEVC-STFX112.txt where STFX112 is taken from the MetaData sheet entry.
-
--	Run TEVCSelectivitySTFX.m for analysis of selectivity
-o	First section
-	Identical to amplitude section
-o	Second section (Load Meta Data TEVC)
-	Similar, but different MetaData sheet: /Users/Fechner/Box Sync/Fechner/TEVC-GoodmanlabBOX/Project-STFX/MetaDataSTFX
-	e.g. the file TEVCMetaSTFX112-Selectivity.xlsx
-o	Third Section:
-	Same procedure as script above
-	Enter “2” behind the variable a1 (2 is the first recording)
-	In the first round, enter 2 as well behind the variable a2
-	After running the code ones, you can use the variable LastFile behind a2, but it doesn’t exist in the first round yet 
-	It generates an individual files for each recording, e.g.: Selectivity-TEVC-STFX112023.txt
-
-
-Figure creating with Jupyter notebook:
+### Figure creating with Jupyter notebook:
 	
--	Clone jupyter notebook to your computer:
-o	https://github.com/wormsenseLab/JupyterNotebooksDEGENaCPharm.git
-o	Contains analysis file for paper Fechner et al. 2021 and Nterm project
-o	You have to make sure that the dabest package is installed
+- Clone jupyter notebook to your computer:
+	- https://github.com/wormsenseLab/JupyterNotebooksDEGENaCPharm.git
+	- Contains analysis file for paper Fechner et al. 2021 and Nterm project
+	- You have to make sure that the dabest package is installed for estimation plots
+	- 
 -	Navigate into folder on your computer via termina
 -	Enter jupyter notebook in terminal 
 
@@ -93,8 +27,46 @@ Run RatioNterm.ipynb for amplitude measurement
 
 Run Selectivity-Nterm-Data.ipynb for calculating the relative permeability
 
+## Package requirement
 
+* Python XX
+* dabest
+* 
 
+####  Add heka_reader to PYTHONPATH
+import sys
+fpath = '/Users/Fechner/Dropbox/PythonImport/heka_reader' #MAC
+sys.path.append(fpath)
+import heka_reader
 
+#### got the heka reader from here
+[Heka Reader](https://github.com/campagnola/heka_reader)
 
+- clone the repository to your computer (move to directory with terminal commands. Mine here is called PythonStuff at the moment: change name)
+    - git clone https://github.com/campagnola/heka_reader.git
+- the heka reader enables to read and access the .dat files (to work in jupyter notebook, you habe to append the heka_reader to the path where the heka reader is stored)
+- browser.py enables to easily browse for recordings within a .dat comparable to Igor or other similar programs
+- I changed the following in my local browser.py version, because the functions output was a tuple:
+    - def load_clicked():
+    - Display a file dialog to select a .dat file
+    - file_name = pg.QtGui.QFileDialog.getOpenFileName()
+    - if isinstance(file_name, tuple):   (ADDED THIS LINE)
+        -    file_name = file_name[0]    (ADDED THIS LINE)
+    - if file_name == '':
+        -    return
+    - load(file_name)
+
+#### Brief example for heka_reader: we changed 
+
+    *Load a .dat file
+    bundle = Bundle(file_name)
+    
+    *Select a trace
+    trace = bundle.pul[group_ind][series_ind][sweep_ind][trace_ind]
+    
+    *Print meta-data for this trace
+    print(trace)
+    
+    *Load data for this trace
+    data = bundle.data[group_id, series_id, sweep_ind, trace_ind]
 
