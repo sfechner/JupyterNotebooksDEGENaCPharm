@@ -1,10 +1,10 @@
 # JupyterNotebooksDEGENaCPharm
-Jupyter notebooks create figures for amplitude data (change in current and ratio) and selectivity data (realtive permeability) from TEVC data. There are two folders: 1) containing the figures for the [Fechner et al. 2021, JGP paper](https://rupress.org/jgp/article/153/4/e202012655/211847/DEG-ENaC-ASIC-channels-vary-in-their-sensitivity) and 2) figures to analyze data from N-terminal mutation study project. FOr the Dose response figures, data were analyzed with IgorPro, Individual dose-response curve fitted with the HIll equation and the fitted values for IC50 and EC50 entered into excel data shets. 
+Jupyter notebooks create figures for amplitude data (change in current and ratio) and selectivity data (relative permeability) from TEVC data. There are two folders: 1) containing the figures for the [Fechner et al. 2021, JGP paper](https://rupress.org/jgp/article/153/4/e202012655/211847/DEG-ENaC-ASIC-channels-vary-in-their-sensitivity) and 2) figures to analyze data from N-terminal mutation study project. FOr the Dose response figures, data were analyzed with IgorPro, Individual dose-response curve fitted with the HIll equation and the fitted values for IC50 and EC50 entered into excel data shets. 
 
 ## Make Figures from TEVC data
 
-### Clone matlab code to your computer
-- [Link to wormsense Guthub repo](https://github.com/wormsenseLab/AnalysisFunction.git)
+<!-- ### Clone matlab code to your computer
+- [Link to wormsense Guthub repo](https://github.com/wormsenseLab/AnalysisFunction.git) -->
 
 ### Analyze data with TEVC Matlab code
 - Follow the description to analyze [TEVC](https://github.com/wormsenseLab/AnalysisFunction) amplitude with TEVCAnalyzeLoopSTFX.m and selectivity with TEVCSelectivitySTFX.m 
