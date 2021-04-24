@@ -3,6 +3,9 @@ Jupyter notebooks create figures for amplitude data (change in current and ratio
 
 ## Make Figures from TEVC data
 
+- [Analyze data with TEVC Matlab code](#Analyze-data-with-tEVC-matlab-code)
+- [Run RatioNterm notebook for amplitude measurement](#Run-ratioNterm-notebook-for-amplitude-measurement)
+- [ Run Selectivity-Nterm-Data notebook for calculating the relative permeability](#Run-selectivity-Nterm-Data-notebook-for-calculating-the-relative-permeability)
 <!-- ### Clone matlab code to your computer
 - [Link to wormsense Guthub repo](https://github.com/wormsenseLab/AnalysisFunction.git) -->
 
@@ -13,19 +16,22 @@ Jupyter notebooks create figures for amplitude data (change in current and ratio
 	
 - Clone jupyter notebook to your computer:
 	- https://github.com/wormsenseLab/JupyterNotebooksDEGENaCPharm.git
-	- Contains analysis file for paper Fechner et al. 2021 and Nterm project
+	- Contains analysis files for paper Fechner et al. 2021 and Nterm project
 	- You have to make sure that the dabest package is installed for estimation plots
 	- 
--	Navigate into folder on your computer via termina
+-	Navigate into folder on your computer via terminal
 -	Enter jupyter notebook in terminal 
 
-Run RatioNterm.ipynb for amplitude measurement
--	Folder path are absolute (unfortunately), so, you need to adapt those
--	listofFiles = define the “frogs” you want to include in the analysis, e.g. STFX111, STFX112; just enter 111 and 112; STFZ will be combined automatically 
--	you also need to change the paths for saving the figures
+#### Run RatioNterm notebook for amplitude measurement
+- Folder path are absolute (unfortunately), so, if you have my analysis folder TEVC-GoodmanlabBOX and kept everything structured the same, you only need to change the variable *mypath* 
+- *listofFiles* = define the “frogs” you want to include in the analysis, e.g. STFX111, STFX112; just enter 111 and 112; STFX will be concatenated to the string automatically 
+- if you want to change the order or the constructs you want to plot, change the variables:
+    - *ReNameAlanin* which plots all individual alanine mutation constructs
+    - *ReNameChimera* which plots all individual chimera constructs
+    - *ReNameChimeraHet* which plots the heteromeric data
+- *filedirExportFig* gives the path where it exports the figures
 
-
-Run Selectivity-Nterm-Data.ipynb for calculating the relative permeability
+#### Run Selectivity-Nterm-Data notebook for calculating the relative permeability
 
 ## Package requirement
 
